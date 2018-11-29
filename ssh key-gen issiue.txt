@@ -1,0 +1,29 @@
+[mapr@hdprd-c01-r11-05 ~]$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/users/mapr/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /users/mapr/.ssh/id_rsa.
+Your public key has been saved in /users/mapr/.ssh/id_rsa.pub.
+The key fingerprint is:
+70:6f:fe:bd:12:61:11:0f:6f:0d:65:2e:ae:44:84:87 mapr@hdprd-c01-r11-05
+The key's randomart image is:
++--[ RSA 2048]----+
+|           o+...o|
+|          E.o+ = |
+|      . .  ...= o|
+|       o . .oo . |
+|        S o....  |
+|         o ...   |
+|          . ..   |
+|           ...   |
+|            ..o. |
++-----------------+
+[mapr@hdprd-c01-r11-05 ~]$
+[mapr@hdprd-c01-r11-05 ~]$ cd .ssh/
+[mapr@hdprd-c01-r11-05 .ssh]$ ls
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+[mapr@hdprd-c01-r11-05 .ssh]$ cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1b/1xPVZmHjAJIYKC0lHyt3FNcE/0wuDv7WsNpdE9v3oSKFFYKUXCJKH2bw1BWSUVCV0TkLyliAOJP9GEN8Mp+QB8cnUDsBe6ga85xL9jKsoYNFJ7MSHUwOHATOX1UeEVCLAzNO6rmipW1es7L0Guy+jLrFVbcUDF2Xhi/wHXfI1K3BNUZdpg0Sg7fFGnDRXGlkH2reVa9HxdgArHYNH40yuUTd2vWkWYDE/0CzYh0Z0dFJyZCSzicM7HrT6k0zjT8Le8Jr2S9+hB/sn+ggv9rdPVzlgBpmOERlkrSXC2xR92QpTOBHiWKKnSGT5X4t2Xymouu15VYF2adaZiSKfb mapr@hdprd-c01-r11-05
+[mapr@hdprd-c01-r11-05 .ssh]$ cd
+[mapr@hdprd-c01-r11-05 ~]$ ssh hdprd-c01-r01-01

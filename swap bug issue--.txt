@@ -1,0 +1,25 @@
+[root@wa-prd-vm-02 etc]#
+Message from syslogd@wa-prd-vm-02 at Feb 10 08:11:58 ...
+ kernel:NMI watchdog: BUG: soft lockup - CPU#5 stuck for 22s! [kworker/5:2:575]
+
+Message from syslogd@wa-prd-vm-02 at Feb 10 08:11:59 ...
+ kernel:NMI watchdog: BUG: soft lockup - CPU#7 stuck for 21s! [kswapd0:60]
+
+Message from syslogd@wa-prd-vm-02 at Feb 10 08:11:59 ...
+ kernel:NMI watchdog: BUG: soft lockup - CPU#6 stuck for 28s! [sshd:3554]
+^C
+[root@wa-prd-vm-02 etc]# exit
+
+======================
+if you face this issue, we can consider it is a swao issue.. Swap won't created on the vm's...
+
+free -m
+
+swap 0
+
+
+So we ned to create a swap on this vm, then it will fine.
+
+free -m
+
+swap 9
