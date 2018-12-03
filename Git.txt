@@ -1,0 +1,157 @@
+[root@ip-172-31-21-207 samplerepo]# history
+    1  yum update
+    2  yum install git
+    3  cd
+    4  mkdir github
+    5  cd github
+    6  ls
+    7  ls -la
+    8  git clone https://github.com/rambtl1214/smaplerepo.git samplerepo
+    9  ls -la
+   10  cd samplerepo
+   11  ls -la
+   12  touch file.txt
+   13  vi file.txt
+   14  git add file.txt
+   15  git commit -m "my first repo"
+   16  git status
+   17  git push origin master
+   18  git branch
+   19  history
+[root@ip-172-31-21-207 samplerepo]#
+[root@ip-172-31-21-207 samplerepo]# pwd
+/root/github/samplerepo
+[root@ip-172-31-21-207 samplerepo]#
+
+================
+Pull :
+  21  vi test.txt
+   22  git pull origin master
+   23  ls -lrt
+   24  cat pull.file
+   25  history
+
+============
+The most commonly used git commands are:
+   add        Add file contents to the index
+   bisect     Find by binary search the change that introduced a bug
+   branch     List, create, or delete branches
+   checkout   Checkout a branch or paths to the working tree
+   clone      Clone a repository into a new directory
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   fetch      Download objects and refs from another repository
+   grep       Print lines matching a pattern
+   init       Create an empty Git repository or reinitialize an existing one
+   log        Show commit logs
+   merge      Join two or more development histories together
+   mv         Move or rename a file, a directory, or a symlink
+   pull       Fetch from and merge with another repository or a local branch
+   push       Update remote refs along with associated objects
+   rebase     Forward-port local commits to the updated upstream head
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+   show       Show various types of objects
+   status     Show the working tree status
+   tag        Create, list, delete or verify a tag object signed with GPG
+=======================
+difference soft and hard in git?
+https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-commits-in-git
+#git add file1.txt
+git status
+git commit -m "added 2nd line"
+git status
+git reset HEAD~
+which is equalent to #git reset -hard HEAD~
+step1)
+git reset -soft HEAD~
+which means that commit reverted to staging area or index area 
+then when you do #git status 
+which tells you should commit your modified changes
+===============
+[root@ip-10-0-1-162 samplerepo]# git revert HEAD
+[root@ip-10-0-1-162 samplerepo]# git push origin master
+Username for 'https://github.com': knowledgeshare99
+Password for 'https://knowledgeshare99@github.com':
+Counting objects: 3, done.
+Compressing objects: 100% (3/3), done.
+[root@ip-10-0-1-162 samplerepo]# git revert origin HEAD
+========
+
+Rebase:
+[root@ip-172-31-32-155 samplerepo]# git branch
+  devops
+* master
+[root@ip-172-31-32-155 samplerepo]# git checkout devop
+error: pathspec 'devop' did not match any file(s) known to git.
+[root@ip-172-31-32-155 samplerepo]# git checkout devops
+Switched to branch 'devops'
+[root@ip-172-31-32-155 samplerepo]# git branch
+* devops
+  master
+[root@ip-172-31-32-155 samplerepo]# vi file2.txt
+[root@ip-172-31-32-155 samplerepo]#
+[root@ip-172-31-32-155 samplerepo]# git add file
+file2.txt  file.txt
+[root@ip-172-31-32-155 samplerepo]# git add file2.txt
+[root@ip-172-31-32-155 samplerepo]# git commint -m "testing rebase"
+git: 'commint' is not a git command. See 'git --help'.
+
+Did you mean this?
+        commit
+[root@ip-172-31-32-155 samplerepo]# git commit -m "testing rebase"
+[devops 49136b1] testing rebase
+
+[root@ip-172-31-32-155 samplerepo]# git checkout master
+Switched to branch 'master'
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+[root@ip-172-31-32-155 samplerepo]# git branch
+  devops
+* master
+[root@ip-172-31-32-155 samplerepo]# ls
+file.txt  pull.file  pullfile1.txt  ram.txt  README.md  test5  testfile.txt  test.txt
+====
+[root@ip-172-31-32-155 samplerepo]# cat file2.txt
+cat: file2.txt: No such file or directory
+[root@ip-172-31-32-155 samplerepo]# git rebase master devops
+First, rewinding head to replay your work on top of it...
+Applying: third
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+Applying: test file
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+Applying: 2nd file testing
+Applying: 2nd file test rebase
+[root@ip-172-31-32-155 samplerepo]#
+[root@ip-172-31-32-155 samplerepo]#
+[root@ip-172-31-32-155 samplerepo]# ls -lrt
+total 40
+-rw-r--r--. 1 root root 39 Nov 27 07:34 README.md
+-rw-r--r--. 1 root root  6 Nov 27 07:34 pullfile1.txt
+-rw-r--r--. 1 root root  7 Nov 27 07:34 pull.file
+-rw-r--r--. 1 root root  6 Nov 27 07:34 file.txt
+-rw-r--r--. 1 root root 17 Nov 27 07:34 test.txt
+-rw-r--r--. 1 root root 13 Nov 27 14:56 test5
+-rw-r--r--. 1 root root 11 Nov 27 15:01 testfile.txt
+-rw-r--r--. 1 root root 14 Nov 29 17:26 ram.txt
+-rw-r--r--. 1 root root 43 Nov 29 17:27 testfile2.txt
+-rw-r--r--. 1 root root 36 Nov 29 17:27 file2.txt
+[root@ip-172-31-32-155 samplerepo]# cat file2.txt
+testing firsdt line
+
+2nd line added
+============
+[root@ip-172-31-32-155 samplerepo]# git branch
+  devops
+* master
+
+the below one is the command:
+[root@ip-172-31-32-155 samplerepo]# git rebase master(target branch) devops(source brnach)
+=====================
+==========================
+what is revert?
